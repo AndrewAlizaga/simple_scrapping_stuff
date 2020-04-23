@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const scrap = require("../utils/scrapper.js");
+const ProductModel = require("../d/product.js");
 
 //PUPPETEER IMPLEMENTATION
 const puppeteer = require("puppeteer");
@@ -23,20 +24,21 @@ router.get("/", async (req, res) => {
 });
 
 
-//FUNCS
+//Get from specific provider
 
-async function getPic(){
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+//METRO CA
+router.get("/metro_ca", async (req, res) => {
     
-    //SERVE SCRAPPING LINK
-    await page.goto('https://google.com');
+    console.log("reached getting products route");
+    
+    //await getPic();
 
-    //TAKING SCREENSHOT
-    await page.screenshot({path: 'google.png'});
+    let product = await scrap();
 
-    //CLOSE BROWSER
-    await browser.close();
-}
+
+    return res.status(200).json({"message": "hello friend", "products": product});
+
+
+});
 
 module.exports = router;

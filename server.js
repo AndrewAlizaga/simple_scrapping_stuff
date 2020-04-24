@@ -12,11 +12,12 @@ const scrape_metro_ca = require("./utils/scrapper");
 connectDB();
 
 //SETS METRO CA SCRAPPING FOR EVERY 2 MINUTES
+/*
 setTimeout(async function(){
 let data = await scrape_metro_ca();
 console.log(data);
 
-}, 120000);
+}, 120000);*/
 
 app.use(express.json({ extended: false}));
 app.use(cors());
